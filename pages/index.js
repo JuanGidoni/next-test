@@ -1,17 +1,10 @@
-import { useRouter } from 'next/router'
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { FaLinkedin, FaRegEye, FaBook, FaUserGraduate, FaToggleOff, FaToggleOn, FaRegMoon, FaRegSun } from 'react-icons/fa'
+import { FaLinkedin, FaRegEye, FaBook, FaUserGraduate, FaRegMoon, FaRegSun, FaCopyright } from 'react-icons/fa'
 import Link from '../atoms/Link'
 
 export default function Home({ toggleTheme, theme }) {
-  const router = useRouter()
 
-  const hrefToComponent = (event) => {
-    event.preventDefault()
-    router.push(href)
-  }
   return (
     <div className={styles.container}>
       <Head>
@@ -22,13 +15,19 @@ export default function Home({ toggleTheme, theme }) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Juan Ignacio Gidoni
+          Juan Ignacio Gidoni 
+        <span onClick={toggleTheme} className={styles.toggler}>
+          {theme === 'light' ?
+              <FaRegMoon />
+            :
+              <FaRegSun />
+          }
+        </span>
         </h1>
 
         <p className={styles.description}>
-          Fullstack Developer && Multimedia Designer
+        {`{Fullstack Developer + Multimedia Designer}`}
         </p>
-
         <div className={styles.grid}>
           <a
             href="https://www.linkedin.com/in/juangidoni/"
@@ -80,25 +79,12 @@ export default function Home({ toggleTheme, theme }) {
         </div>
       </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-        <button onClick={toggleTheme} className={styles.toggler}>
-          {theme === 'light' ?
-              <FaRegMoon />
-            :
-              <FaRegSun />
-          }
-        </button>
-      </footer>
+    <footer className={styles.footer}>
+      <div className={styles.copyright}>
+      <FaCopyright />
+      <p className={styles.footerCopy}>Juan Ignacio Gidoni 2021</p>
+      </div>
+    </footer>
     </div>
   )
 }
